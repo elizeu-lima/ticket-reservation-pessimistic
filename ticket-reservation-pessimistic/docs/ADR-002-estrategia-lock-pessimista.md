@@ -38,4 +38,3 @@ O recurso disputado (`availableQuantity`) já vive inteiramente dentro de uma tr
 ## Consequências
 - Leituras **sem** `FOR UPDATE` (ex.: `GET /events/{id}/ticket-types`) não são bloqueadas pelo lock — o MVCC do Postgres permite consultas concorrentes sem espera, mesmo durante uma reserva em andamento.
 - Toda exceção lançada dentro do método `@Transactional` de reserva provoca rollback automático (comportamento padrão do Spring para `RuntimeException`), liberando o lock imediatamente para a próxima transação da fila.
-
